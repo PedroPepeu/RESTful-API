@@ -5,8 +5,46 @@
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <meta charset="utf-8">
         <script src="script.js" defer></script>
+        <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
     </head>
     <body>
+
+        <script>
+            // Initialize Parse
+            Parse.initialize("KEMGrxmgi8OXU5tq4QtUcM0dw3yquObw6l4jxe26", "WOhouNqoihdEM2ufSH7SeCJz3hPD1Zqp1nLKVP5Z");
+            Parse.serverURL = "https://parseapi.back4app.com/";
+
+            // Test those things
+            // Create a new User
+            async function createParseUser() {
+            // Creates a new Parse "User" object, which is created by default in your Parse app
+            let user = new Parse.User();
+            // Set the input values to the new "User" object
+            user.set("username", document.getElementById("usr_name").value);
+            user.set("email", document.getElementById("usr_email").value);
+            user.set("password", document.getElementById("usr_psswd").value);
+            try {
+                // Call the save method, which returns the saved object if successful
+                user = await user.save();
+                if (user !== null) {
+                // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+                alert(
+                    `New object created with success! ObjectId: ${
+                    user.id
+                    }, ${user.get("username")}`
+                );
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+            }
+
+            // Add on click listener to call the create parse user function
+            document.getElementById("submit").addEventListener("click", async function () {
+            createParseUser();
+            });
+        </script>
+
         <div class="mid-main">
             <h2>Welcome</h2>
             <h4>Username</h4>
@@ -14,7 +52,7 @@
             <h4>Password<h4/>
             <input type="password" id="usr_psswd" name="password" placeholder="Password..."><br/>
             <br/>
-            <input type="submit" value="Login">
+            <button id="submit">Login</button>
             <h5 class="shift-left"> forgot password? </h5>
 
             <h5 class="mid"> Do not have an account? <a href="acc/acc.html"> <button> Logon </button></a> </h5>
