@@ -6,7 +6,7 @@ const usr_confirm_psswd = document.getElementById("usr_confirm_psswd");
 const usr_gender = document.getElementById("usr_gender");
 const usr_state = document.getElementById("usr_state");
 
-const checkInputs = () => {
+function save_acc() {
     let name = usr_name.value;
     console.log(name);
 }
