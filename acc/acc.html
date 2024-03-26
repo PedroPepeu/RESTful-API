@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>User cadst</title>
         <link rel="stylesheet" type="text/css" href="./accstyle.css"/>
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </head>
     <body>
         <div class="mid-main">
@@ -21,13 +21,13 @@
             <h4> confirm password </h4>
             <input type="password" id="usr_confirm_psswd" placeholder="confirm password"></br>
             <h4> Gender </h4>
-            <select name="gender">
+            <select name="gender" id="usr_gender">
                 <option value="male"> male </option>
                 <option value="female"> female </option>
                 <option value="o_p"> Other </option>
             </select> </br></br>
             <h4>Federation</h4>
-            <select name="states">
+            <select name="states" id="usr_state">
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
                 <option value="AP">Amapá</option>
