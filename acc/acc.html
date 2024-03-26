@@ -11,21 +11,27 @@
             <h1> Welcome </h1>
             <h3> logon </h3>
             <h4> Username </h4>
-            <input type="text" id="usr_name" placeholder="Username..."><br/>
+            <input type="text" id="usr_name" placeholder="Username...">
+            <p id="name_rtn"></p><br/>
             <h4> Email </h4>
-            <input type="email" id="usr_email" placeholder="name@name.com"><br/>
+            <input type="email" id="usr_email" placeholder="name@name.com">
+            <p id="email_rtn"></p><br/>
             <h4> Date of birth </h4>
-            <input type="date" id="usr_birth"></br>
+            <input type="date" id="usr_birth">
+            <p id="birth_rtn"></p><br/>
             <h4> password </h4>
-            <input type="password" id="usr_psswd" placeholder="password"><br/>
+            <input type="password" id="usr_psswd" placeholder="password">
+            <p id="psswd_rtn"></p><br/>
             <h4> confirm password </h4>
-            <input type="password" id="usr_confirm_psswd" placeholder="confirm password"></br>
+            <input type="password" id="usr_confirm_psswd" placeholder="confirm password">
+            <p id="c_psswd_rtn"></p><br/>
             <h4> Gender </h4>
             <select name="gender" id="usr_gender">
                 <option value="male"> male </option>
                 <option value="female"> female </option>
                 <option value="o_p"> Other </option>
-            </select> </br></br>
+            </select> 
+            <p id="gender_rtn"></p><br/></br>
             <h4>Federation</h4>
             <select name="states" id="usr_state">
                 <option value="AC">Acre</option>
@@ -56,7 +62,7 @@
                 <option value="SE">Sergipe</option>
                 <option value="TO">Tocantins</option>
             </select>
-            <br><br>
+            <p id="state_rtn"></p><br/><br>
             <button id="submit" onclick="save_acc()"> Create account </button>
             <br>
             <br>
