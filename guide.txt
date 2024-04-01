@@ -1,0 +1,12 @@
+post
+{
+    "username": "Teste",
+    "email": "teste@teste.com",
+    "password": "teste123"
+}
+
+get : geral
+
+put {
+    "username": "Teste1"
+}

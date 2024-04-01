@@ -1,53 +1,26 @@
-// Initialize Parse
-Parse.initialize("KEMGrxmgi8OXU5tq4QtUcM0dw3yquObw6l4jxe26", "WOhouNqoihdEM2ufSH7SeCJz3hPD1Zqp1nLKVP5Z");
-Parse.serverURL = "https://parseapi.back4app.com/";
+const createUserButton = document.getElementById('createButton');
 
-// Create a new User
-async function createParseUser() {
-    // Creates a new Parse "User" object, which is created by default in your Parse app
-    let user = new Parse.User();
-    // Set the input values to the new "User" object
-    user.set("username", document.getElementById("usr_name").value);
-    user.set("email", document.getElementById("usr_email").value);
-    user.set("password", document.getElementById("usr_psswd").value);
+createUserButton.addEventListener('click', async () => {
+    const username = document.getElementById('usr_name').value;
+    const email = document.getElementById('usr_email').value;
+    const password = document.getElementById('usr_psswd').value;
+
     try {
-        // Call the save method, which returns the saved object if successful
-        user = await user.save();
-        if (user !== null) {
-            // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-            alert(
-                `New object created with success! ObjectId: ${user.id
-                }, ${user.get("username")}`
-            );
+        const response = await fetch('/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error creating user: ${response.statusText}`);
         }
+
+        const data = await response.json();
+        console.log('User created successfully:', data);
+        // Handle successful user creation (e.g., display a success message)
     } catch (error) {
-        alert(`Error: ${error.message}`);
+        console.error('Error creating user:', error.message);
+        // Handle creation errors (e.g., display an error message)
     }
-}
-
-// Add on click listener to call the create parse user function
-document.getElementById("createButton").addEventListener("click", async function () {
-    createParseUser();
 });
-
-// async function changeParseUser() {
-//     // Creates a new Parse "User" object, which is created by default in your Parse app
-//     let user = new Parse.User();
-//     // Set the input values to the new "User" object
-//     user.set("username", document.getElementById("usr_name").value);
-//     user.set("email", document.getElementById("usr_email").value);
-//     user.set("password", document.getElementById("usr_psswd").value);
-//     try {
-//         // Call the save method, which returns the saved object if successful
-//         user = await user.save();
-//         if (user !== null) {
-//             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-//             alert(
-//                 `New object created with success! ObjectId: ${user.id
-//                 }, ${user.get("username")}`
-//             );
-//         }
-//     } catch (error) {
-//         alert(`Error: ${error.message}`);
-//     }
-// }

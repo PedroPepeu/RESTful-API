@@ -1,27 +1,28 @@
-async function changeParseUser() {
-    // Get the username as an identifier for the user to update
-    const username = document.getElementById("usr_name").value;
+const changeButton = document.getElementById('changeButton');
 
-    // Use Parse.User.logIn to get the current user object
-    const currentUser = await Parse.User.logIn(username, document.getElementById("usr_psswd").value);
+changeButton.addEventListener('click', async () => {
+    const username = document.getElementById('usr_name').value;
+    const email = document.getElementById('usr_email').value;
+    const password = document.getElementById('usr_psswd').value;
 
-    if (currentUser) {
-        // Update the user object with new values (if needed)
-        currentUser.set("email", document.getElementById("usr_email").value);
-        // ... update other fields as needed
+    try {
+        // Implement logic to update user data based on username and new data (replace with actual logic)
+        const response = await fetch('/users/' + username, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+            // You might need to send authentication credentials in the request
+        });
 
-        try {
-            // Call save to update the user
-            await currentUser.save();
-            alert("User updated successfully!");
-        } catch (error) {
-            alert(`Error: ${error.message}`);
+        if (!response.ok) {
+            throw new Error(`Error updating user: ${response.statusText}`);
         }
-    } else {
-        alert("User not found!");
-    }
-}
 
-document.getElementById("changeButton").addEventListener("click", async function () {
-    changeParseUser();
-})
+        const updatedUser = await response.json();
+        console.log('User updated successfully:', updatedUser);
+        // Handle successful update (e.g., display a confirmation message)
+    } catch (error) {
+        console.error('Error updating user:', error.message);
+        // Handle update errors (e.g., display an error message)
+    }
+});

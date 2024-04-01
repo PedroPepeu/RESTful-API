@@ -1,25 +1,26 @@
-async function deleteParseUser() {
-    console.log("delete");
-    // Get the username as an identifier for the user to delete
-    const username = document.getElementById("usr_name").value;
+const deleteButton = document.getElementById('deleteButton');
 
-    // Use Parse.User.logIn to get the user object
-    const currentUser = await Parse.User.logIn(username, document.getElementById("usr_psswd").value);
+deleteButton.addEventListener('click', async () => {
+    const username = document.getElementById('usr_name').value;
+    const email = document.getElementById('usr_email').value;
+    const password = document.getElementById('usr_psswd').value;
 
-    if (currentUser) {
-        try {
-            // Call destroy to delete the user
-            await currentUser.destroy();
-            alert("User deleted successfully!");
-        } catch (error) {
-            alert(`Error: ${error.message}`);
+    try {
+        // Implement logic to delete user based on username and password (replace with actual logic)
+        const response = await fetch('/users/' + username, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            // You might need to send authentication credentials in the request
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error deleting user: ${response.statusText}`);
         }
-    } else {
-        alert("User not found!");
-    }
-}
 
-document.getElementById("deleteButton").addEventListener("click", async function () {
-    console.log("button");
-    deleteParseUser();
+        console.log('User deleted successfully');
+        // Handle successful deletion (e.g., display a success message)
+    } catch (error) {
+        console.error('Error deleting user:', error.message);
+        // Handle deletion errors (e.g., display an error message)
+    }
 });
