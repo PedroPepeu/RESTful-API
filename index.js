@@ -1,8 +1,10 @@
+var cors = require('cors')
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 8080;
 
+app.use(cors())
 let users = [];
 
 app.get('/', (req, res) => {

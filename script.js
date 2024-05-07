@@ -6,7 +6,7 @@ createUserButton.addEventListener('click', async () => {
     const password = document.getElementById('usr_psswd').value;
 
     try {
-        const response = await fetch('/users', {
+        const response = await fetch('http://localhost:8080/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, email, password }),
